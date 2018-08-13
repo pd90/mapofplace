@@ -1,0 +1,57 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.41'
+
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.realm:realm-gradle-plugin:5.4.1"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//define external varibales in a single place
+// Sdk and tools
+ext {
+    minSdkVersion = 14
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    buildToolsVersion = '27.1.1'
+
+//map app dependencies
+    supportLibraryVersion = '27.1.1'
+    gsonversion = "2.8.2"
+    rxjava = "2.1.9"
+    rxandroid="2.0.1"
+    rxadapter ="1.0.0"
+    retrofit="2.0.0"
+    retrofitgsonconverter="2.0.0"
+    rxjavaretrofit="1.0.0"
+    okhttp="3.0.1"
+    okhttpurlcon="3.0.1"
+    okhttpintercept ="3.4.1"
+    dagger ="2.13"
+    annotationprocessor="2.13"
+    timber ="4.7.1"
+    eventbus ="3.1.1"
+    realm ="2.3.1"
+    androidjob = "1.2.6"
+}

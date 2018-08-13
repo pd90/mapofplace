@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'realm-android'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.example.parasdhanta.mapofcontacts"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            // Run code coverage reports by default on debug builds.
+            testCoverageEnabled = true
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    dataBinding{
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // App's dependencies, including test
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonversion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid"
+
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.rxadapter"
+
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitgsonconverter"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.rxjavaretrofit"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttp"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.ext.okhttpurlcon"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpintercept"
+
+    implementation  "com.google.dagger:dagger:$rootProject.ext.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.annotationprocessor"
+
+    implementation "com.jakewharton.timber:timber:$rootProject.ext.timber"
+
+    implementation "org.greenrobot:eventbus:$rootProject.ext.eventbus"
+    implementation "com.evernote:android-job:$rootProject.ext.androidjob"
+}
+/*
+Resolves dependency versions across test and production APKs, specifically, transitive
+dependencies. This is required since Espresso internally has a dependency on support-annotations.
+*/
+configurations.all {
+    resolutionStrategy.force "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+}
